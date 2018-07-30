@@ -10,23 +10,16 @@ Vue.use(Router)
 export default new Router({
   routes: [
     { 
-      path: '/goods',
+      path: '/',
       name: 'GoodsList',
-      component: GoodsList,
-      // children表示子路由，必须是数组
-      // title前面不要加斜杠，否则变成了一级的
-      children: [{
-        path: 'title',
-        name: 'title',
-        component: Title
-      }, {
-        path: 'image',
-        name: 'image',
-        component: Image
-      }]
+      components: {
+        default: GoodsList,
+        title: Title,
+        image: Image
+      }
     },
     {
-      path: '/cart',
+      path: '/cart/:cartId',
       name: 'cart',
       component: Cart
     }

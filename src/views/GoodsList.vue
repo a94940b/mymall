@@ -1,14 +1,8 @@
 <template>
  <div>
    这是商品列表页面
-   <!-- /goods页面下面有子路由，所有这里要定义router-view -->
-   <router-link to="/goods/title">显示商品标题</router-link>
-   <router-link to="/goods/image">显示商品图片</router-link>
-   <div>
-     <router-view></router-view>
-   </div>
-   <router-link to="/cart">跳转到购物车页面</router-link>
-   <button @click="jump">button跳转到购物车页面</button>
+   <!-- 命名路由，用v-bind:to="{name:'路由名'}"，并且还带参数 。 这里的params指的是路由的参数，不是页面跳转的参数 -->
+   <router-link :to="{name:'cart',params:{cartId:123}}">跳转到购物车页面</router-link>
  </div>
 </template>
 
