@@ -7,12 +7,22 @@
    <div>
      <router-view></router-view>
    </div>
+   <router-link to="/cart">跳转到购物车页面</router-link>
+   <button @click="jump">button跳转到购物车页面</button>
  </div>
 </template>
 
 <script>
 export default {
-
+  // push里面可以直接传入字符串url进行跳转
+  // this.$router.push('/cart')
+  // 也可以传入对象
+  // url可以传入参数
+  methods: {
+    jump () {
+      this.$router.push({path: '/cart?goodsId=123'});
+    }
+  }
 }
 </script>
 
