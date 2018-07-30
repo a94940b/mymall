@@ -1,6 +1,6 @@
 <template>
  <div>
-   这是商品标题
+   这是商品图片子组件
  </div>
 </template>
 
