@@ -1,0 +1,20 @@
+{
+  "status": "0",
+  "msg": "",
+  "result": [
+    {"productId": 101,
+      "productName": "音响",
+     "productPrice": 1499,
+     "productImg": "1.jpg"
+    }, {
+      "productId": 102, 
+      "productName": "水龙头",
+     "productPrice": 499,
+     "productImg": "2.jpg"
+    }, {"productId": 103, 
+      "productName": "耳机",
+     "productPrice": 999,
+     "productImg": "3.jpg"
+    }
+  ]
+}

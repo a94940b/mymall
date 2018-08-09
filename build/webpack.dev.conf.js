@@ -10,6 +10,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
+// vue请求调用本地mock数据的方法，增加如下代码：
+const express = require('express')
+const app = express()
+// 拿到服务端的路由
+var router = express.Router();
+// 加载本地mock数据
+var goodsData = require('./../mock/goodslist.json')
+app.use(router);
+
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -22,6 +31,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+    before(app){
+      app.get("/goods", function(req, res, next){
+        res.json(goodsData)
+      });
+    },
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [

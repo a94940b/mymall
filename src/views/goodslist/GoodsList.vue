@@ -37,49 +37,13 @@
           <div class="accessory-list-wrap">
             <div class="accessory-list col-4">
               <ul>
-                <li>
+                <li v-for="(item, index) of goodsList">
                   <div class="pic">
-                    <a href="#"><img src="static/1.jpg" alt=""></a>
+                    <a href="#"><img :src="'/static/'+item.productImg" alt=""></a>
                   </div>
                   <div class="main">
-                    <div class="name">XX</div>
-                    <div class="price">999</div>
-                    <div class="btn-area">
-                      <a href="javascript:;" class="btn btn--m">加入购物车</a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="pic">
-                    <a href="#"><img src="static/2.jpg" alt=""></a>
-                  </div>
-                  <div class="main">
-                    <div class="name">XX</div>
-                    <div class="price">1000</div>
-                    <div class="btn-area">
-                      <a href="javascript:;" class="btn btn--m">加入购物车</a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="pic">
-                    <a href="#"><img src="static/3.jpg" alt=""></a>
-                  </div>
-                  <div class="main">
-                    <div class="name">XX</div>
-                    <div class="price">500</div>
-                    <div class="btn-area">
-                      <a href="javascript:;" class="btn btn--m">加入购物车</a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="pic">
-                    <a href="#"><img src="static/4.jpg" alt=""></a>
-                  </div>
-                  <div class="main">
-                    <div class="name">XX</div>
-                    <div class="price">2499</div>
+                    <div class="name">{{item.productName}}</div>
+                    <div class="price">{{item.productPrice}}</div>
                     <div class="btn-area">
                       <a href="javascript:;" class="btn btn--m">加入购物车</a>
                     </div>
@@ -102,13 +66,31 @@ import '@/assets/css/product.css'
 import navHeader from './components/navHeader'
 import navFooter from './components/navFooter'
 import navBread from './components/navBread'
+import axios from 'axios'
 
 export default {
   name: 'GoodsList',
+  data () {
+    return {
+      goodsList: []
+    }
+  },
   components: {
     navHeader,
     navFooter,
     navBread
+  },
+  mounted: function () {
+    this.getGoodsList();
+  },
+  methods: {
+    getGoodsList () {
+      axios.get("/goods").then((result)=>{
+        var res = result.data;
+        // 返回的result是一个数组，将它放到goodsList中准备进行遍历
+        this.goodsList = res.result;
+      })
+    }
   }
 }
 </script>
